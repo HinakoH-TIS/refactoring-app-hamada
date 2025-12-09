@@ -11,6 +11,8 @@ public class ConstantMsg {
 	public static final String MSG_UPDATE_COMPLETE = "を更新しました";
 	public static final String MSG_INSERT_COMPLETE = "を登録しました";
 	public static final String MSG_DELETE_COMPLETE = "を削除しました";
+	public static final String MSG_SYSTEM_ERROR = "システムエラーです";
+	public static final String MSG_INPUT_ERROR = "{0}以上{1}以下の整数を入力してください：";
 
 	public static final String EMP_INFO = "社員情報";
 	public static final String MENU_NO = "メニュー番号";
