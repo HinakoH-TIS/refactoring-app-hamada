@@ -22,7 +22,7 @@ public class ConstantMsg {
 	public static final String BIRTHDAY = "生年月日(西暦年/月/日)";	
 	public static final String GENDER = "性別(0:回答しない, 1:男性, 2:女性, 9:その他)";
 	public static final String MENU_TITLE = "=== 社員管理システム ===";
-	public static final String SEARCH_RESULT_HEADER = "社員ID\\t社員名\\t性別\\t生年月日\\t部署名";
+	public static final String SEARCH_RESULT_HEADER = "社員ID\t社員名\t性別\t生年月日\t部署名";
 	
 	
 	
