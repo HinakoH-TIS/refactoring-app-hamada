@@ -18,7 +18,7 @@ public class EmployeeFindByEmpNameService implements IEmployeeService {
 		EmployeeNameReader empNameReader = new EmployeeNameReader();
 		EmployeeDAO employeeDAO = new EmployeeDAO();
 
-		ConsoleWriter.showInputMessage(EMP_NAME + MSG_INPUT);
+		ConsoleWriter.showMessage(EMP_NAME + MSG_INPUT);
 		String empName = (String) empNameReader.input();
 
 		List<Employee> employees = employeeDAO.findByEmployeeName(empName);
