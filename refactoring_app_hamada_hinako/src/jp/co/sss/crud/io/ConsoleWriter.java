@@ -46,7 +46,7 @@ public class ConsoleWriter {
 
 	public static void showInputMessage(String inputMessage) {
 
-		System.out.println(inputMessage);
+		System.out.print(inputMessage);
 	}
 
 }
