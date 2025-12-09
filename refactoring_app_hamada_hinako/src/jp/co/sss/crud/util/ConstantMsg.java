@@ -12,7 +12,8 @@ public class ConstantMsg {
 	public static final String MSG_INSERT_COMPLETE = "を登録しました";
 	public static final String MSG_DELETE_COMPLETE = "を削除しました";
 	public static final String MSG_SYSTEM_ERROR = "システムエラーです";
-	public static final String MSG_INPUT_ERROR = "{0}以上{1}以下の整数を入力してください：";
+	public static final String MSG_INPUT_NUMBER_ERROR = "{0}以上{1}以下の整数を入力してください：";
+	public static final String MSG_INPUT_STRING_ERROR = "{0}文字以上{1}文字以下の文字列を入力してください：";
 
 	public static final String EMP_INFO = "社員情報";
 	public static final String MENU_NO = "メニュー番号";
@@ -20,6 +21,9 @@ public class ConstantMsg {
 	public static final String DEPT_ID = "部署ID(1:営業部、2:経理部、3:総務部)";
 	public static final String BIRTHDAY = "生年月日(西暦年/月/日)";	
 	public static final String GENDER = "性別(0:回答しない, 1:男性, 2:女性, 9:その他)";
+	public static final String MENU_TITLE = "=== 社員管理システム ===";
+	public static final String SEARCH_RESULT_HEADER = "社員ID\\t社員名\\t性別\\t生年月日\\t部署名";
+	
 	
 	
 	
