@@ -14,6 +14,9 @@ public class ConstantValue {
 	public static final int EMP_NAME_MAX = 30;
 	public static final int EMP_NAME_MIN = 1;
 	
+	public static final int DEPT_ID_MAX = 3;
+	public static final int DEPT_ID_MIN = 1;
+	
 	
 
 }
