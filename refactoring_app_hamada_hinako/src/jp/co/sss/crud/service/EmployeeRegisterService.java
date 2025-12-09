@@ -48,7 +48,7 @@ public class EmployeeRegisterService implements IEmployeeService{
 		
 		employeeDAO.insert(employee);
 		
-		ConsoleWriter.showMessage(EMP_INFO + MSG_INSERT_COMPLETE);
+		ConsoleWriter.showMessageLine(EMP_INFO + MSG_INSERT_COMPLETE);
 	}
 
 }

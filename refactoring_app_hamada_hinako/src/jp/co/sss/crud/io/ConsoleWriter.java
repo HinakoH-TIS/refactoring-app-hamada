@@ -40,9 +40,12 @@ public class ConsoleWriter {
 		}
 	}
 
-	public static void showMessage(String message) {
-
+	public static void showMessageLine(String message) {
 		System.out.println(message);
+	}
+	
+	public static void showMessage(String message) {
+		System.out.print(message);
 	}
 
 }
