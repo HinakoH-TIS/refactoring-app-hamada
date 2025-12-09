@@ -14,6 +14,8 @@ public class ConstantMsg {
 	public static final String MSG_SYSTEM_ERROR = "システムエラーです";
 	public static final String MSG_INPUT_NUMBER_ERROR = "{0}以上{1}以下の整数を入力してください：";
 	public static final String MSG_INPUT_STRING_ERROR = "{0}文字以上{1}文字以下の文字列を入力してください：";
+	public static final String MSG_INPUT_GENDER_ERROR = "0,1,2,9のいずれかを入力してください：";
+	public static final String MSG_INPUT_DATE_ERROR = "正しい形式(西暦年/月/日)で日付を入力してください：";
 
 	public static final String EMP_INFO = "社員情報";
 	public static final String MENU_NO = "メニュー番号";
