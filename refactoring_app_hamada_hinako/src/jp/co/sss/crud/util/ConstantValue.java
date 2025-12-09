@@ -10,5 +10,10 @@ public class ConstantValue {
 	public static final int MENU_DELETE = 6;
 	public static final int MENU_QUIT = 7;
 	
+	
+	public static final int EMP_NAME_MAX = 30;
+	public static final int EMP_NAME_MIN = 1;
+	
+	
 
 }
