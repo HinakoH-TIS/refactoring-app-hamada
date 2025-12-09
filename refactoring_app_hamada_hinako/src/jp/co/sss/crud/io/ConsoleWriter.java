@@ -12,10 +12,6 @@ import jp.co.sss.crud.util.Menu;
  */
 public class ConsoleWriter {
 
-	public static void showErrorMsg(String msg) {
-		System.out.println(msg);
-	}
-
 	public static void showMenu() {
 		// メニューの表示
 		System.out.println(MENU_TITLE);
@@ -44,9 +40,9 @@ public class ConsoleWriter {
 		}
 	}
 
-	public static void showInputMessage(String inputMessage) {
+	public static void showMessage(String message) {
 
-		System.out.print(inputMessage);
+		System.out.println(message);
 	}
 
 }
