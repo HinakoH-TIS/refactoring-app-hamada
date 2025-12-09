@@ -223,4 +223,10 @@ public class EmployeeDAO implements IEmployeeDAO {
 		return null;
 	}
 
+	@Override
+	public Employee findByEmpId(int empId) throws SystemErrorException {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 }
