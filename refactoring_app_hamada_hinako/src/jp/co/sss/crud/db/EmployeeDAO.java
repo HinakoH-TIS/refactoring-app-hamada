@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,7 +172,6 @@ public class EmployeeDAO implements IEmployeeDAO {
 				// DBとの接続を切断
 				DBManager.close(connection);
 			} catch (SQLException e) {
-				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
 		}
@@ -178,8 +179,36 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 	@Override
 	public void insert(Employee employee) throws SystemErrorException {
-		// TODO 自動生成されたメソッド・スタブ
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			// DBに接続
+			connection = DBManager.getConnection();
 
+			// ステートメントを作成
+			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_INSERT);
+
+			// 入力値をバインド
+			preparedStatement.setString(1, employee.getEmpName());
+			preparedStatement.setInt(2, employee.getGender());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			preparedStatement.setObject(3, sdf.parse(employee.getBirthday()), Types.DATE);
+			preparedStatement.setInt(4, employee.getDepartment().getDeptId());
+
+			// SQL文を実行
+			preparedStatement.executeUpdate();
+		}catch (Exception e){
+			throw new SystemErrorException();
+		} finally {
+			
+			try {
+				DBManager.close(preparedStatement);
+				DBManager.close(connection);
+			}catch (SQLException e){
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 	@Override
