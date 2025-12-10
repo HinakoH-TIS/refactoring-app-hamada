@@ -38,7 +38,9 @@ public class ConsoleWriter {
 	public static void showEmployees(List<Employee> employees) {
 
 		if (employees.isEmpty()) {
+			System.out.println();
 			System.out.println(MSG_NO_RESULT);
+			System.out.println();
 		} else {
 			System.out.println();
 			showHeader();
@@ -54,7 +56,9 @@ public class ConsoleWriter {
 	 * @param message	表示するメッセージ
 	 */
 	public static void showMessageLine(String message) {
+		System.out.println();
 		System.out.println(message);
+		System.out.println();
 	}
 	
 	/**
