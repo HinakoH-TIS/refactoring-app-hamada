@@ -1,5 +1,7 @@
 package jp.co.sss.crud.db;
 
+import static jp.co.sss.crud.util.ConstantMsg.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,9 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.co.sss.crud.dto.Department;
 import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.mapper.EmployeeMapper;
 import jp.co.sss.crud.util.ConstantSQL;
 
 /**
@@ -32,27 +34,16 @@ public class EmployeeDAO implements IEmployeeDAO {
 		List<Employee> employees = new ArrayList<Employee>();
 
 		try {
+			//データベース接続とSQL文の準備
 			connection = DBManager.getConnection();
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_ALL_SELECT);
 
-			// SQL文を実行
+			// SQL文を実行し、検索結果をEmployeeDTO配列にセット
 			resultSet = preparedStatement.executeQuery();
-
-			//結果をEmployeeDTOの配列ににセット
-			while (resultSet.next()) {
-				Employee employee = new Employee();
-				Department department = new Department();
-				employee.setEmpId(resultSet.getInt("emp_id"));
-				employee.setEmpName(resultSet.getString("emp_name"));
-				employee.setGender(resultSet.getInt("gender"));
-				employee.setBirthday(resultSet.getString("birthday"));
-				department.setDeptName(resultSet.getString("dept_name"));
-				employee.setDepartment(department);
-				employees.add(employee);
-			}
+			employees = EmployeeMapper.setValuesToEmployeeList(resultSet);
 
 		} catch (SQLException | ClassNotFoundException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 		} finally {
 
 			try {
@@ -78,32 +69,21 @@ public class EmployeeDAO implements IEmployeeDAO {
 		ResultSet resultSet = null;
 
 		try {
+			//データベース接続とSQL文の準備
 			connection = DBManager.getConnection();
 			StringBuffer sql = new StringBuffer(ConstantSQL.SQL_SELECT_BASIC);
 			sql.append(ConstantSQL.SQL_SELECT_BY_EMP_NAME);
 			preparedStatement = connection.prepareStatement(sql.toString());
 			preparedStatement.setString(1, "%" + searchName + "%");
 
+			// SQL文を実行し、検索結果をEmployeeDTO配列にセット
 			resultSet = preparedStatement.executeQuery();
-
-			//結果をEmployeeDTOの配列ににセット
-			while (resultSet.next()) {
-				Employee employee = new Employee();
-				Department department = new Department();
-				employee.setEmpId(resultSet.getInt("emp_id"));
-				employee.setEmpName(resultSet.getString("emp_name"));
-				employee.setGender(resultSet.getInt("gender"));
-				employee.setBirthday(resultSet.getString("birthday"));
-				department.setDeptName(resultSet.getString("dept_name"));
-				employee.setDepartment(department);
-				employees.add(employee);
-			}
+			employees = EmployeeMapper.setValuesToEmployeeList(resultSet);
 
 		} catch (SQLException | ClassNotFoundException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 		} finally {
 			try {
-
 				DBManager.close(resultSet);
 				DBManager.close(preparedStatement);
 				DBManager.close(connection);
@@ -127,6 +107,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 		List<Employee> employees = new ArrayList<Employee>();
 
 		try {
+			//データベース接続とSQL文の準備
 			connection = DBManager.getConnection();
 			StringBuffer sql = new StringBuffer(ConstantSQL.SQL_SELECT_BASIC);
 			sql.append(ConstantSQL.SQL_SELECT_BY_DEPT_ID);
@@ -135,24 +116,12 @@ public class EmployeeDAO implements IEmployeeDAO {
 			// 検索条件となる値をバインド
 			preparedStatement.setInt(1, deptId);
 
-			// SQL文を実行
+			// SQL文を実行し、検索結果をEmployeeDTO配列にセット
 			resultSet = preparedStatement.executeQuery();
-
-			//結果をEmployeeDTOの配列ににセットして返す
-			while (resultSet.next()) {
-				Employee employee = new Employee();
-				Department department = new Department();
-				employee.setEmpId(resultSet.getInt("emp_id"));
-				employee.setEmpName(resultSet.getString("emp_name"));
-				employee.setGender(resultSet.getInt("gender"));
-				employee.setBirthday(resultSet.getString("birthday"));
-				department.setDeptName(resultSet.getString("dept_name"));
-				employee.setDepartment(department);
-				employees.add(employee);
-			}
+			employees = EmployeeMapper.setValuesToEmployeeList(resultSet);
 
 		} catch (SQLException | ClassNotFoundException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 		} finally {
 			try {
 				DBManager.close(resultSet);
@@ -174,6 +143,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {
+			//データベース接続とSQL文の準備
 			connection = DBManager.getConnection();
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_INSERT);
 
@@ -188,7 +158,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException | ClassNotFoundException | ParseException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 		} finally {
 			try {
 				DBManager.close(preparedStatement);
@@ -209,6 +179,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 		PreparedStatement preparedStatement = null;
 
 		try {
+			//データベース接続とSQL文の準備
 			connection = DBManager.getConnection();
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_UPDATE);
 
@@ -223,7 +194,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			return preparedStatement.executeUpdate();
 
 		} catch (SQLException | ClassNotFoundException | ParseException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 		} finally {
 
 			try {
@@ -246,7 +217,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 		PreparedStatement preparedStatement = null;
 
 		try {
-
+			//データベース接続とSQL文の準備
 			connection = DBManager.getConnection();
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_DELETE);
 
@@ -257,7 +228,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			return preparedStatement.executeUpdate();
 
 		} catch (SQLException | ClassNotFoundException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 
 		} finally {
 			try {
@@ -281,7 +252,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 		List<Employee> employees = new ArrayList<Employee>();
 
 		try {
-
+			//データベース接続とSQL文の準備
 			connection = DBManager.getConnection();
 			StringBuffer sql = new StringBuffer(ConstantSQL.SQL_SELECT_BASIC);
 			sql.append(ConstantSQL.SQL_SELECT_BY_EMP_ID);
@@ -290,24 +261,12 @@ public class EmployeeDAO implements IEmployeeDAO {
 			// 検索条件となる値をバインド
 			preparedStatement.setInt(1, empId);
 
-			// SQL文を実行
+			// SQL文を実行し、検索結果をEmployeeDTO配列にセット
 			resultSet = preparedStatement.executeQuery();
-
-			//結果をEmployeeDTOの配列ににセットして返す
-			while (resultSet.next()) {
-				Employee employee = new Employee();
-				Department department = new Department();
-				employee.setEmpId(resultSet.getInt("emp_id"));
-				employee.setEmpName(resultSet.getString("emp_name"));
-				employee.setGender(resultSet.getInt("gender"));
-				employee.setBirthday(resultSet.getString("birthday"));
-				department.setDeptName(resultSet.getString("dept_name"));
-				employee.setDepartment(department);
-				employees.add(employee);
-			}
+			employees = EmployeeMapper.setValuesToEmployeeList(resultSet);
 
 		} catch (SQLException | ClassNotFoundException e) {
-			throw new SystemErrorException();
+			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
 		} finally {
 			try {
 				DBManager.close(resultSet);

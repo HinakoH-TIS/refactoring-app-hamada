@@ -3,7 +3,6 @@ package jp.co.sss.crud.service;
 import static jp.co.sss.crud.util.ConstantMsg.*;
 
 import jp.co.sss.crud.db.EmployeeDAO;
-import jp.co.sss.crud.dto.Department;
 import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
@@ -12,6 +11,7 @@ import jp.co.sss.crud.io.EmployeeBirthdayReader;
 import jp.co.sss.crud.io.EmployeeDeptIdReader;
 import jp.co.sss.crud.io.EmployeeGenderReader;
 import jp.co.sss.crud.io.EmployeeNameReader;
+import jp.co.sss.crud.mapper.EmployeeMapper;
 
 public class EmployeeRegisterService implements IEmployeeService{
 
@@ -37,14 +37,8 @@ public class EmployeeRegisterService implements IEmployeeService{
 		ConsoleWriter.showMessage(DEPT_ID + MSG_INPUT);
 		int deptId = (int) empDeptIdReader.input();
 		
-		//EmployeeDtoにセットしてEmployeeDAOに渡す
-		Employee employee = new Employee();
-		Department department = new Department();
-		employee.setEmpName(empName);
-		employee.setGender(gender);
-		employee.setBirthday(birthday);
-		department.setDeptId(deptId);
-		employee.setDepartment(department);
+		//EmployeeDTOに値をセット
+		Employee employee = EmployeeMapper.setValuesToEmployee(empName, gender, birthday, deptId);
 		
 		employeeDAO.insert(employee);
 		

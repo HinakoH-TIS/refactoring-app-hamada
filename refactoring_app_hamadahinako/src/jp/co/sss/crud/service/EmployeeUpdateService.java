@@ -6,7 +6,6 @@ import static jp.co.sss.crud.util.ConstantValue.*;
 import java.util.List;
 
 import jp.co.sss.crud.db.EmployeeDAO;
-import jp.co.sss.crud.dto.Department;
 import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
@@ -16,6 +15,7 @@ import jp.co.sss.crud.io.EmployeeDeptIdReader;
 import jp.co.sss.crud.io.EmployeeEmpIdReader;
 import jp.co.sss.crud.io.EmployeeGenderReader;
 import jp.co.sss.crud.io.EmployeeNameReader;
+import jp.co.sss.crud.mapper.EmployeeMapper;
 
 public class EmployeeUpdateService implements IEmployeeService {
 
@@ -51,14 +51,9 @@ public class EmployeeUpdateService implements IEmployeeService {
 		ConsoleWriter.showMessage(DEPT_ID + ":");
 		int deptId = (int) empDeptIdReader.input();
 		
-		Employee employee = new Employee();
-		Department department = new Department();
+		//EmployeeDTOに値をセット
+		Employee employee = EmployeeMapper.setValuesToEmployee(empName, gender, birthday, deptId);
 		employee.setEmpId(empId);
-		employee.setEmpName(empName);
-		employee.setGender(gender);
-		employee.setBirthday(birthday);
-		department.setDeptId(deptId);
-		employee.setDepartment(department);
 		
 		Integer result = employeeDAO.update(employee);
 		
