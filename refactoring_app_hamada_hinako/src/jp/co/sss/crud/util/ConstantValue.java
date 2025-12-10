@@ -17,6 +17,11 @@ public class ConstantValue {
 	public static final int DEPT_ID_MAX = 3;
 	public static final int DEPT_ID_MIN = 1;
 	
+	public static final int EMP_ID_MAX = 9999;
+	public static final int EMP_ID_MIN = 1;
+	
+	public static final int SUCCESS = 1;
+	public static final int FAILURE = 0;
 	
 
 }
