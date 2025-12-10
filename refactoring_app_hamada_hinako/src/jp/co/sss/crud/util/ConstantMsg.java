@@ -20,6 +20,7 @@ public class ConstantMsg {
 
 	public static final String EMP_INFO = "社員情報";
 	public static final String EMP_ID_UPDATE = "更新する社員の社員ID";
+	public static final String EMP_ID_DELETE = "削除する社員の社員ID";
 	public static final String MENU_NO = "メニュー番号";
 	public static final String EMP_NAME = "社員名";
 	public static final String DEPT_ID = "部署ID(1:営業部、2:経理部、3:総務部)";
