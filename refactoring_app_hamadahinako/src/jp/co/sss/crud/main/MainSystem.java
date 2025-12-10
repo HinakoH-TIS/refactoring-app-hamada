@@ -43,8 +43,12 @@ public class MainSystem {
 				ConsoleWriter.showMenu();
 				menuNo = (int) menuNoReader.input();
 				IEmployeeService service = IEmployeeService.getInstanceByMenuNo(menuNo);
-				service.execute();
-
+				
+				//サービスインスタンスがある場合、実行（システム終了を選んだ場合作成されない）
+				if(service != null) {
+					service.execute();
+				}
+				
 			} catch (IllegalInputException e) {//不正な入力があった場合、ループに戻る
 				System.out.println(e.getMessage());
 				System.out.println();
@@ -56,6 +60,6 @@ public class MainSystem {
 			}
 
 		} while (menuNo != MENU_QUIT);
-		System.out.println(MSG_QUIT);
+		ConsoleWriter.showMessageLine(MSG_QUIT);
 	}
 }
