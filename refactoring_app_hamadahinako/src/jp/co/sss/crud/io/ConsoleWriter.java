@@ -12,8 +12,10 @@ import jp.co.sss.crud.util.Menu;
  */
 public class ConsoleWriter {
 
+	/**
+	 * メニュー表示
+	 */
 	public static void showMenu() {
-		// メニューの表示
 		System.out.println(MENU_TITLE);
 
 		for (Menu menu : Menu.values()) {
@@ -22,10 +24,17 @@ public class ConsoleWriter {
 		System.out.print(MENU_NO + MSG_INPUT);
 	}
 
+	/**
+	 * 検索結果のヘッダー表示
+	 */
 	public static void showHeader() {
 		System.out.println(SEARCH_RESULT_HEADER);
 	}
 
+	/**
+	 * 社員の検索結果表示
+	 * @param employees 社員リスト
+	 */
 	public static void showEmployees(List<Employee> employees) {
 
 		if (employees.isEmpty()) {
@@ -40,10 +49,18 @@ public class ConsoleWriter {
 		}
 	}
 
+	/**
+	 * 改行有りのメッセージ表示
+	 * @param message	表示するメッセージ
+	 */
 	public static void showMessageLine(String message) {
 		System.out.println(message);
 	}
 	
+	/**
+	 * 改行無しのメッセージ表示
+	 * @param message	表示するメッセージ
+	 */
 	public static void showMessage(String message) {
 		System.out.print(message);
 	}

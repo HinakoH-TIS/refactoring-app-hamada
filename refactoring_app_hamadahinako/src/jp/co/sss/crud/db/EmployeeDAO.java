@@ -1,6 +1,7 @@
 package jp.co.sss.crud.db;
 
 import static jp.co.sss.crud.util.ConstantMsg.*;
+import static jp.co.sss.crud.util.ConstantValue.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -150,7 +151,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			// 入力値をバインド
 			preparedStatement.setString(1, employee.getEmpName());
 			preparedStatement.setInt(2, employee.getGender());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 			preparedStatement.setObject(3, sdf.parse(employee.getBirthday()), Types.DATE);
 			preparedStatement.setInt(4, employee.getDepartment().getDeptId());
 
@@ -186,7 +187,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			// 入力値をバインド
 			preparedStatement.setString(1, employee.getEmpName());
 			preparedStatement.setInt(2, employee.getGender());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 			preparedStatement.setObject(3, sdf.parse(employee.getBirthday()), Types.DATE);
 			preparedStatement.setInt(4, employee.getDepartment().getDeptId());
 			preparedStatement.setInt(5, employee.getEmpId());

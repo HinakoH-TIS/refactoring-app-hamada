@@ -1,7 +1,12 @@
 package jp.co.sss.crud.io;
 
+import static jp.co.sss.crud.util.ConstantValue.*;
+
 import jp.co.sss.crud.util.ConstantMsg;
 
+/**
+ * 性別入力用リーダークラス
+ */
 public class EmployeeGenderReader implements IConsoleReader{
 
 	@Override
@@ -11,7 +16,7 @@ public class EmployeeGenderReader implements IConsoleReader{
 
 	@Override
 	public boolean isValid(String inputString) {
-		return inputString.matches("^[0129０１２９]{1}$");
+		return inputString.matches(REGEX_GENDER);
 	}
 
 	@Override

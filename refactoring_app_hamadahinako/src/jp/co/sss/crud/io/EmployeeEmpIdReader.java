@@ -6,6 +6,9 @@ import java.text.MessageFormat;
 
 import jp.co.sss.crud.util.ConstantMsg;
 
+/**
+ * 社員ID入力用リーダークラス
+ */
 public class EmployeeEmpIdReader implements IConsoleReader{
 
 	@Override
@@ -15,7 +18,7 @@ public class EmployeeEmpIdReader implements IConsoleReader{
 
 	@Override
 	public boolean isValid(String inputString) {
-		return inputString.matches("^[1-9１-９]{1}[0-9１-９]{0,3}$");
+		return inputString.matches(REGEX_EMP_ID);
 	}
 
 	@Override

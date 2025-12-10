@@ -6,6 +6,9 @@ import java.text.MessageFormat;
 
 import jp.co.sss.crud.util.ConstantMsg;
 
+/**
+ *  社員名入力用リーダークラス
+ */
 public class EmployeeNameReader implements IConsoleReader {
 
 	@Override

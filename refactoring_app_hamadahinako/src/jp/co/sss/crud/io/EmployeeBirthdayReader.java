@@ -4,7 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import jp.co.sss.crud.util.ConstantMsg;
+import jp.co.sss.crud.util.ConstantValue;
 
+/**
+ * 生年月日入力用リーダークラス
+ */
 public class EmployeeBirthdayReader implements IConsoleReader {
 
 	@Override
@@ -14,7 +18,7 @@ public class EmployeeBirthdayReader implements IConsoleReader {
 
 	@Override
 	public boolean isValid(String inputString) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf = new SimpleDateFormat(ConstantValue.DATE_FORMAT);
 		sdf.setLenient(false);
 		try {
 			sdf.parse(inputString);

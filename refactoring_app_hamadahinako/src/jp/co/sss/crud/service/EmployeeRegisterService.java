@@ -13,6 +13,9 @@ import jp.co.sss.crud.io.EmployeeGenderReader;
 import jp.co.sss.crud.io.EmployeeNameReader;
 import jp.co.sss.crud.mapper.EmployeeMapper;
 
+/**
+ * 社員新規登録用サービスクラス
+ */
 public class EmployeeRegisterService implements IEmployeeService{
 
 	@Override
@@ -40,8 +43,8 @@ public class EmployeeRegisterService implements IEmployeeService{
 		//EmployeeDTOに値をセット
 		Employee employee = EmployeeMapper.setValuesToEmployee(empName, gender, birthday, deptId);
 		
+		//登録実行し、完了メッセージを出力させる
 		employeeDAO.insert(employee);
-		
 		ConsoleWriter.showMessageLine(EMP_INFO + MSG_INSERT_COMPLETE);
 	}
 

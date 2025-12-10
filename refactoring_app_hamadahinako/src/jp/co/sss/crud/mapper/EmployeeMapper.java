@@ -9,6 +9,9 @@ import jp.co.sss.crud.dto.Department;
 import jp.co.sss.crud.dto.Employee;
 
 
+/**
+ * EmployeeDTOに値をセットするクラス
+ */
 public class EmployeeMapper {
 	
 	/**

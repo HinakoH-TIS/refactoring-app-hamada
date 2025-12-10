@@ -1,5 +1,8 @@
 package jp.co.sss.crud.util;
 
+/**
+ * メニュー情報ENUM
+ */
 public enum Menu {
 	SHOW_ALL(1, "全件表示"), 
 	SEARCH_BY_NAME(2, "社員名検索"),
@@ -9,7 +12,9 @@ public enum Menu {
 	DELETE_EMP(6, "削除"), 
 	QUIT(7, "終了");
 
+	/** メニュー番号 */
 	private final int menuNo;
+	/** メニュー名 */
 	private final String menuName;
 
 	private Menu(int menuNo, String menuName) {
@@ -25,13 +30,4 @@ public enum Menu {
 		return menuName;
 	}
 
-	public static Menu getByMenuNo(int menuNo) {
-
-		for (Menu menu : Menu.values()) {
-			if (menu.getMenuNo() == menuNo) {
-				return menu;
-			}
-		}
-		return null;
-	}
 }

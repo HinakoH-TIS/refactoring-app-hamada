@@ -1,5 +1,8 @@
 package jp.co.sss.crud.main;
 
+import static jp.co.sss.crud.util.ConstantMsg.*;
+import static jp.co.sss.crud.util.ConstantValue.*;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -9,8 +12,6 @@ import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.IEmployeeService;
-import jp.co.sss.crud.util.ConstantMsg;
-import jp.co.sss.crud.util.ConstantValue;
 
 /**
  * 社員情報管理システム開始クラス 社員情報管理システムはこのクラスから始まる。<br/>
@@ -54,7 +55,7 @@ public class MainSystem {
 				break;
 			}
 
-		} while (menuNo != ConstantValue.MENU_QUIT);
-		System.out.println(ConstantMsg.MSG_QUIT);
+		} while (menuNo != MENU_QUIT);
+		System.out.println(MSG_QUIT);
 	}
 }
