@@ -28,5 +28,5 @@ public class ConstantValue {
 	public static final String REGEX_DEPT_ID = "^[1-3１-３]{1}$";
 	public static final String REGEX_EMP_ID = "^[1-9１-９]{1}[0-9１-９]{0,3}$";
 	public static final String REGEX_GENDER = "^[0129０１２９]{1}$";
-	
+	public static final String REGEX_MENU_NO = "^[1-7１-７]$";
 }
