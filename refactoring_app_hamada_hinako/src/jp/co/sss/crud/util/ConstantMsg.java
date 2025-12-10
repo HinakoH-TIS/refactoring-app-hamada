@@ -8,6 +8,7 @@ public class ConstantMsg {
 	public static final String MSG_INPUT = "を入力してください:";
 	public static final String MSG_QUIT = "システムを終了します。";
 	public static final String MSG_NO_RESULT = "該当者はいませんでした";
+	public static final String MSG_NO_TARGET = "対象者はいませんでした";
 	public static final String MSG_UPDATE_COMPLETE = "を更新しました";
 	public static final String MSG_INSERT_COMPLETE = "を登録しました";
 	public static final String MSG_DELETE_COMPLETE = "を削除しました";
@@ -18,6 +19,7 @@ public class ConstantMsg {
 	public static final String MSG_INPUT_DATE_ERROR = "正しい形式(西暦年/月/日)で日付を入力してください：";
 
 	public static final String EMP_INFO = "社員情報";
+	public static final String EMP_ID_UPDATE = "更新する社員の社員ID";
 	public static final String MENU_NO = "メニュー番号";
 	public static final String EMP_NAME = "社員名";
 	public static final String DEPT_ID = "部署ID(1:営業部、2:経理部、3:総務部)";
