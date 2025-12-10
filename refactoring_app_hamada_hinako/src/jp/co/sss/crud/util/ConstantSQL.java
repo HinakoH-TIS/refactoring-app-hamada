@@ -55,6 +55,9 @@ public class ConstantSQL {
 
 	/** 条件検索(部署IDによる条件) */
 	public static final String SQL_SELECT_BY_DEPT_ID = "WHERE e.dept_id = ? ORDER BY e.emp_id";
+	
+	/** 条件検索(社員IDによる条件) */
+	public static final String SQL_SELECT_BY_EMP_ID = "WHERE e.emp_id = ?";
 
 	/** 登録 */
 	public static final String SQL_INSERT = "INSERT INTO employee VALUES(nextval('seq_emp'), ?, ?, ?, ?)";
