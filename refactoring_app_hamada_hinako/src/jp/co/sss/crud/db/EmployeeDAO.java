@@ -197,14 +197,14 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 			// SQL文を実行
 			preparedStatement.executeUpdate();
-		}catch (Exception e){
+		} catch (Exception e) {
 			throw new SystemErrorException();
 		} finally {
-			
+
 			try {
 				DBManager.close(preparedStatement);
 				DBManager.close(connection);
-			}catch (SQLException e){
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
@@ -213,8 +213,38 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 	@Override
 	public Integer update(Employee employee) throws SystemErrorException {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			// DBに接続
+			connection = DBManager.getConnection();
+
+			// ステートメントを作成
+			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_UPDATE);
+
+			// 入力値をバインド
+			preparedStatement.setString(1, employee.getEmpName());
+			preparedStatement.setInt(2, employee.getGender());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			preparedStatement.setObject(3, sdf.parse(employee.getBirthday()), Types.DATE);
+			preparedStatement.setInt(4, employee.getDepartment().getDeptId());
+			preparedStatement.setInt(5, employee.getEmpId());
+
+			return preparedStatement.executeUpdate();
+	
+		} catch (Exception e) {
+			throw new SystemErrorException();
+		} finally {
+
+			try {
+				DBManager.close(preparedStatement);
+				DBManager.close(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 	@Override
@@ -224,9 +254,57 @@ public class EmployeeDAO implements IEmployeeDAO {
 	}
 
 	@Override
-	public Employee findByEmpId(int empId) throws SystemErrorException {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	public List<Employee> findByEmpId(int empId) throws SystemErrorException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			// DBに接続
+			connection = DBManager.getConnection();
+
+			// SQL文を準備
+			StringBuffer sql = new StringBuffer(ConstantSQL.SQL_SELECT_BASIC);
+			sql.append(ConstantSQL.SQL_SELECT_BY_EMP_ID);
+
+			// ステートメントの作成
+			preparedStatement = connection.prepareStatement(sql.toString());
+
+			// 検索条件となる値をバインド
+			preparedStatement.setInt(1, empId);
+
+			// SQL文を実行
+			resultSet = preparedStatement.executeQuery();
+			List<Employee> employees = new ArrayList<Employee>();
+
+			//結果をEmployeeDTOの配列ににセットして返す
+			while (resultSet.next()) {
+				Employee employee = new Employee();
+				Department department = new Department();
+				employee.setEmpId(resultSet.getInt("emp_id"));
+				employee.setEmpName(resultSet.getString("emp_name"));
+				employee.setGender(resultSet.getInt("gender"));
+				employee.setBirthday(resultSet.getString("birthday"));
+				department.setDeptName(resultSet.getString("dept_name"));
+				employee.setDepartment(department);
+				employees.add(employee);
+			}
+			return employees;
+
+		} catch (Exception e) {
+			throw new SystemErrorException();
+		} finally {
+			try {
+				// ResultSetをクローズ
+				DBManager.close(resultSet);
+				// Statementをクローズ
+				DBManager.close(preparedStatement);
+				// DBとの接続を切断
+				DBManager.close(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -30,7 +30,7 @@ public interface IEmployeeDAO {
 	 * @return 社員レコード
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
 	 */
-	Employee findByEmpId(int empId) throws SystemErrorException;
+	List<Employee> findByEmpId(int empId) throws SystemErrorException;
 
 	/**
 	 * 部署ID検索
